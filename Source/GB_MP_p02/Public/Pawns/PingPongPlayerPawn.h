@@ -3,13 +3,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Camera/CameraComponent.h"
 #include "GameFramework/Pawn.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "PingPongPlayerPawn.generated.h"
 
 UCLASS()
 class GB_MP_P02_API APingPongPlayerPawn : public APawn
 {
 	GENERATED_BODY()
+protected:
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Components")
+	USpringArmComponent* SpringArm;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Components")
+	UCameraComponent* Camera;
 
 public:
 	// Sets default values for this pawn's properties

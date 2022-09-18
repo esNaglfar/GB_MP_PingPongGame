@@ -8,6 +8,15 @@ APingPongPlayerPawn::APingPongPlayerPawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	SetReplicates(true);
+
+	USceneComponent* Root = CreateDefaultSubobject<USceneComponent>("Root");
+	SetRootComponent(Root);
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>("Spring Arm");
+	SpringArm->SetupAttachment(Root);
+
+	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
+	Camera->SetupAttachment(SpringArm);
 
 }
 
