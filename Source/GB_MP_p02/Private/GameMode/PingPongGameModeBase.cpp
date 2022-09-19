@@ -45,7 +45,7 @@ void APingPongGameModeBase::PostLogin(APlayerController* NewPlayer)
 		}
 		else if(PlayerTwo == NULL)
 		{
-			PlayerOne = (APingPongPlayerController*) NewPlayer;
+			PlayerTwo = (APingPongPlayerController*) NewPlayer;
 			CurrentPlayer = PlayerTwo;
 			startPos = PlayerTwoStart;
 			UE_LOG(LogTemp, Warning, TEXT("GameMode: Init player two"));
