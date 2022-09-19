@@ -22,14 +22,12 @@ void APingPongGameModeBase::BeginPlay()
 void APingPongGameModeBase::PostLogin(APlayerController* NewPlayer)
 {
 	Super::PostLogin(NewPlayer);
-
 	UWorld* world = GetWorld();
 
-	if(world && (!PlayerOneStart && !PlayerTwoStart))
+	if(world && (!PlayerOne || !PlayerTwo))
 	{
 		TArray<AActor*> PlayerStarts;
 		UGameplayStatics::GetAllActorsOfClass(world, APlayerStart::StaticClass(), PlayerStarts);
-
 		if(PlayerStarts.Num() > 0) PlayerOneStart = (APlayerStart*) PlayerStarts[0];
 		if(PlayerStarts.Num() > 1) PlayerTwoStart = (APlayerStart*) PlayerStarts[1];
 
@@ -67,7 +65,7 @@ void APingPongGameModeBase::PostLogin(APlayerController* NewPlayer)
 		{
 			newPawn->SetActorLocation(startPos->GetActorLocation());
 			newPawn->SetActorRotation(startPos->GetActorRotation());
-			NewPlayer->SetPawn(newPawn);
+			CurrentPlayer->SetPawn(newPawn);
 
 			CurrentPlayer->SetStartTransform(startPos->GetActorTransform());
 			CurrentPlayer->Initialize();
